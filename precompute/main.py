@@ -1,13 +1,16 @@
 """CLI: automated search -> build trees -> export JSON for the top prompts."""
+from __future__ import annotations
+
 import config
 import model as model_mod
 import scoring
 import tree
 import beam
 import export
+from config import PrecomputeConfig
 
 
-def run(cfg):
+def run(cfg: PrecomputeConfig) -> None:
     """Full precompute (spec §11):
       1. load model
       2. rank_prompts over data/candidate_prompts.json -> top cfg.num_prompts

@@ -1,8 +1,11 @@
 """Beam search (Decision 4): fixed width W, run to `horizon` tokens.
 Keeps the W highest cumulative-log-prob SEQUENCES, not per-token picks."""
+from __future__ import annotations
+
+from typedefs import Model, Context, Hypothesis
 
 
-def beam_search(model, prompt_ids, width, horizon):
+def beam_search(model: Model, prompt_ids: Context, width: int, horizon: int) -> list[Hypothesis]:
     """Return the W final hypotheses: each (token_ids, cumulative_logprob).
     Algorithm (research 'beam search'):
       - maintain W live hypotheses (seq, score = Σ token logprobs)

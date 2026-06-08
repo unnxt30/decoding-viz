@@ -1,7 +1,12 @@
 """Build the bounded token-tree with KV-cache reuse (Decision 5) + the extended greedy path."""
+from __future__ import annotations
+
+import schema
+from config import PrecomputeConfig
+from typedefs import Model, Context, TokenId
 
 
-def build_tree(model, prompt_ids, cfg):
+def build_tree(model: Model, prompt_ids: Context, cfg: PrecomputeConfig) -> tuple[dict[str, schema.Node], str]:
     """Build the explorable tree: from the prompt, expand the top-N children to depth D,
     storing each node's distribution (distribution.py) at every node.
 
@@ -16,7 +21,7 @@ def build_tree(model, prompt_ids, cfg):
     raise NotImplementedError
 
 
-def extend_greedy(model, prompt_ids, horizon):
+def extend_greedy(model: Model, prompt_ids: Context, horizon: int) -> list[tuple[TokenId, float]]:
     """Pure greedy (argmax) out to `horizon` tokens — the bland/loopy evidence (claim #1).
     A single path: reuse one cache straight down (no snapshotting needed). Return list[(id, logprob)]."""
     # TODO(unnat): implement.

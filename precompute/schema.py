@@ -1,5 +1,8 @@
 """Data contract: the JSON shape the frontend consumes (spec §5/§6, Decision 6).
-You DESIGN these fields. Read spec §6 for the agreed shape, then declare them."""
+You DESIGN these fields. Read spec §6 for the agreed shape, then declare them.
+Type aliases in typedefs.py (TokenId, etc.) are available if useful."""
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 

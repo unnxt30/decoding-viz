@@ -15,3 +15,8 @@ dev = ["pytest"]
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+
+[tool.pyright]
+# Flat module layout — tell the type checker the modules live here, so imports
+# like `from typedefs import Logits` resolve. (mlx/mlx_lm resolve after `uv sync`.)
+extraPaths = ["."]
