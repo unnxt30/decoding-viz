@@ -1,0 +1,17 @@
+[project]
+name = "decoding-visualizer-precompute"
+version = "0.1.0"
+description = "MLX precompute pipeline for the decoding visualizer — emits per-prompt JSON."
+requires-python = ">=3.11"
+dependencies = [
+    "mlx",
+    "mlx-lm",
+    "numpy",
+]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

@@ -1,0 +1,4 @@
+{
+  "prompts": ["The weather today is"],
+  "_TODO_unnat": "Add ~40-80 more candidate continuation prompts. Aim for a MIX so the automated search has range to rank: open-ended/creative ('My favorite memory is', 'The old house at the end of the street'), list-starts ('Three things I packed for the trip:', '1.'), ambiguous mid-sentence ('She opened the door and', 'The problem with that plan is'), and a few sharp/factual ones ('The capital of France is', '2 + 2 =') as negative controls that should NOT score as forks. Raw continuation text, no chat template, no trailing space conventions you don't want tokenized. scoring.py ranks these by fork-entropy + greedy-loopiness and keeps the top cfg.num_prompts."
+}

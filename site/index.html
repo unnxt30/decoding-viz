@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decoding Visualizer</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <span class="pill">Prompt: <select id="prompt-picker"></select></span>
+    <span class="pill">Model: <b id="model-badge">—</b></span>
+    <span class="pill mode"><button id="mode-explore" class="on">Explore</button><button id="mode-evidence">Evidence</button></span>
+  </header>
+
+  <main class="layout">
+    <section id="tree-panel" class="panel">
+      <div class="panel-title">Token tree</div>
+      <svg id="tree-svg"></svg>
+    </section>
+
+    <aside class="right">
+      <section id="dist-panel" class="panel">
+        <div class="panel-title">Distribution @ <span id="dist-node">—</span></div>
+        <div id="dist-bars"></div>
+        <div id="dist-meta"></div>
+      </section>
+      <section id="controls-panel" class="panel">
+        <div class="panel-title">Strategy</div>
+        <div id="strategy-tabs"></div>
+        <div id="sliders"></div>
+        <button id="dice">🎲 Roll the dice</button>
+      </section>
+    </aside>
+
+    <section id="evidence-panel" class="panel" hidden>
+      <div class="panel-title">Evidence — same prompt, every strategy</div>
+      <div id="evidence-rows"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

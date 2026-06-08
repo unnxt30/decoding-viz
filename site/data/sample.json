@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "model": "Qwen3-4B-MLX-4bit",
+    "quantized": "4-bit",
+    "prompt_text": "The weather today is",
+    "prompt_token_ids": [791, 9282, 3432, 374],
+    "branching_N": 2,
+    "tree_depth": 2,
+    "top_m": 4,
+    "beam_width": 2,
+    "horizon": 3,
+    "slider_caps": { "top_p_max": 0.95, "temp_max": 1.5 }
+  },
+  "vocab": {
+    "791": "The", "9282": " weather", "3432": " today", "374": " is",
+    "40000": " sunny", "40001": " cloudy", "40002": " a", "40003": " warm",
+    "50000": " and", "50001": " with", "50002": ",", "50003": " but",
+    "60000": " warm", "60001": " clear"
+  },
+  "root": "n0",
+  "nodes": {
+    "n0": {
+      "token_id": null, "depth": 0, "entropy": 3.21, "logsumexp": 13.04, "tail_mass": 0.06,
+      "dist": [
+        { "id": 40000, "logit": 11.2 },
+        { "id": 40001, "logit": 9.8 },
+        { "id": 40002, "logit": 9.0 },
+        { "id": 40003, "logit": 8.2 }
+      ],
+      "children": { "40000": "n1", "40001": "n2" }
+    },
+    "n1": {
+      "token_id": 40000, "depth": 1, "entropy": 2.05, "logsumexp": 12.1, "tail_mass": 0.03,
+      "dist": [
+        { "id": 50000, "logit": 10.5 },
+        { "id": 50001, "logit": 9.2 },
+        { "id": 50002, "logit": 8.0 },
+        { "id": 50003, "logit": 6.6 }
+      ],
+      "children": { "50000": "n3" }
+    },
+    "n2": {
+      "token_id": 40001, "depth": 1, "entropy": 1.42, "logsumexp": 11.7, "tail_mass": 0.02,
+      "dist": [
+        { "id": 50001, "logit": 10.0 },
+        { "id": 50000, "logit": 9.1 },
+        { "id": 50002, "logit": 7.4 },
+        { "id": 50003, "logit": 5.9 }
+      ],
+      "children": {}
+    },
+    "n3": {
+      "token_id": 50000, "depth": 2, "entropy": 0.98, "logsumexp": 11.2, "tail_mass": 0.01,
+      "dist": [
+        { "id": 60000, "logit": 10.8 },
+        { "id": 60001, "logit": 8.1 }
+      ],
+      "children": {}
+    }
+  },
+  "greedy_path": ["n0", "n1", "n3"],
+  "beam_paths": [
+    { "node_ids": ["n0", "n1", "n3"], "cum_logprob": -2.10 },
+    { "node_ids": ["n0", "n2"], "cum_logprob": -3.40 }
+  ]
+}
