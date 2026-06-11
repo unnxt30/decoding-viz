@@ -26,7 +26,7 @@ Scalar = mx.array      # a 0-d mlx array (an entropy value, a logsumexp, ...)
 # --- token references ---
 TokenId = int                  # one vocabulary id
 TokenIds = mx.array            # a 1-D int array of ids (a candidate set, sorted indices)
-Context = list[int]            # a sequence of token ids forming a model context
+Context = list[TokenId]            # a sequence of token ids forming a model context
 
 # --- opaque mlx / mlx-lm handles (named for readability; not structurally checked) ---
 Model = Any                    # an mlx-lm model (nn.Module)

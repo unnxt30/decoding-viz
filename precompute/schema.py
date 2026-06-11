@@ -4,23 +4,26 @@ Type aliases in typedefs.py (TokenId, etc.) are available if useful."""
 from __future__ import annotations
 
 from dataclasses import dataclass
-
-
+from typedefs import TokenId, Hypothesis
+from typing import Optional
 @dataclass
 class Node:
-    """One tree node — the frontend draws bars + computes strategies from this.
-    Design qs (spec §6 + ADR 0001):
-      - the token that led here (how do you mark the root?)
-      - the stored distribution (what element type — a small (id, logit) pair?)
-      - the three honesty numbers (which? — ADR 0001)
-      - how children are referenced (Decision 2 = by id)
-      - is depth needed?
-    Then pick types. Loose count: ~6-7 fields."""
-    # TODO(unnat): declare Node fields.
-
+    """One tree node: the stored top-M distribution + honesty numbers (lse, tail_mass, entropy),
+    the token that led here, and child node ids."""
+    node_id: int
+    prior_token: Optional[TokenId]
+    top_m_tokens: Optional[list[tuple[TokenId, float]]]
+    lse: Optional[float]
+    tail_mass: Optional[float]
+    entropy: Optional[float]
+    edges: Optional[list[int]]
 
 @dataclass
 class PromptFile:
-    """The whole per-prompt JSON. Design qs: meta (which config values matter to the UI?),
-    vocab map, the flat node map + root id, greedy_path, beam_paths. ~5-6 fields."""
-    # TODO(unnat): declare PromptFile fields.
+    """The whole per-prompt JSON contract the frontend consumes."""
+    root: int
+    nodes: dict[int, Node]
+    greedy_path:list[tuple[TokenId, float]]
+    beam_path:list[Hypothesis]
+    vocab: dict[TokenId, str]
+    meta: dict[str, str]

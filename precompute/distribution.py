@@ -9,9 +9,8 @@ from typedefs import Logits, Scalar, TokenId, TokenIds
 
 
 def full_logsumexp(logits: Logits) -> Scalar:
-    """log(Σ exp(logits)) over the FULL vocab — the true softmax normalizer.
-    Why: lets the head's probabilities be TRUE probabilities, not subset-renormalized.
-    Watch numerical stability — subtract max(logits) before exp."""
+    """Log-sum-exp over the full vocab — the true softmax normalizer.
+    Numerically stable: subtract max(logits) before exp."""
 
     max_logits = mx.max(logits) * mx.ones(len(logits))
     logits = mx.subtract(logits, max_logits)
@@ -22,9 +21,7 @@ def full_logsumexp(logits: Logits) -> Scalar:
 
 
 def top_m(logits: Logits, m: int) -> list[tuple[TokenId, float]]:
-    """Top-m (token_id, logit) pairs, sorted descending by logit.
-    Design q: argpartition vs argsort — does order within the top-m matter to you?
-    Return: list[tuple[int, float]]."""
+    """Top-m (token_id, logit) pairs, sorted descending by logit."""
     sorted_logits_indices = mx.argsort(-logits)[:m]
 
     out = []

@@ -21,7 +21,7 @@ def softmax(logits: Logits) -> Probs:
     return sftmx
 
 def apply_temperature(logits: Logits, t: float) -> Logits:
-    """Return logits / t. t<1 sharpens, t>1 flattens (claim #3). Consider t -> 0."""
+    """Return logits / t. t<1 sharpens toward greedy, t>1 flattens toward uniform."""
     return logits/t
 
 # --- strategies ---
@@ -35,9 +35,7 @@ def top_k_filter(logits: Logits, k: int) -> TokenIds:
 
 
 def top_p_filter(logits: Logits, p: float) -> TokenIds:
-    """Smallest set of tokens whose cumulative prob >= p (the nucleus; adaptive).
-    Design qs: sort by prob desc, cumsum, cut at the crossing. Include the crossing token?
-    (The nucleus paper includes it.)"""
+    """Smallest set of tokens whose cumulative prob >= p (the nucleus; includes the crossing token)."""
 
     probs_sorted = -1 * mx.sort(-softmax(logits))
     ind = mx.argsort(-logits)

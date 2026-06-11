@@ -1,0 +1,28 @@
+{
+  "prompts": [
+    {
+      "file": "prompt0.json",
+      "text": "The problem with that plan is"
+    },
+    {
+      "file": "prompt1.json",
+      "text": "na na na na"
+    },
+    {
+      "file": "prompt2.json",
+      "text": "blah blah blah"
+    },
+    {
+      "file": "prompt3.json",
+      "text": "1."
+    },
+    {
+      "file": "prompt4.json",
+      "text": "The first thing I noticed was"
+    },
+    {
+      "file": "prompt5.json",
+      "text": "On the morning everything changed,"
+    }
+  ]
+}

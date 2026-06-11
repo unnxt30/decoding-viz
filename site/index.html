@@ -3,41 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Decoding Visualizer</title>
+  <title>Decoding Visualizer · next-token strategies on a real model</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="topbar">
-    <span class="pill">Prompt: <select id="prompt-picker"></select></span>
-    <span class="pill">Model: <b id="model-badge">—</b></span>
-    <span class="pill mode"><button id="mode-explore" class="on">Explore</button><button id="mode-evidence">Evidence</button></span>
-  </header>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        Decoding&nbsp;Visualizer
+        <small>next-token strategies on a real model</small>
+      </div>
+      <span class="spacer"></span>
+      <label class="field">prompt
+        <select id="prompt-picker"></select>
+      </label>
+      <span class="field">model <span class="badge" id="model-badge">—</span></span>
+      <div class="modeswitch">
+        <button id="mode-explore" class="on">Explore</button>
+        <button id="mode-evidence">Evidence</button>
+      </div>
+    </header>
 
-  <main class="layout">
-    <section id="tree-panel" class="panel">
-      <div class="panel-title">Token tree</div>
-      <svg id="tree-svg"></svg>
-    </section>
+    <main class="layout" id="explore-view">
+      <section id="tree-panel" class="panel">
+        <div class="panel-head">
+          <div class="panel-title"><span class="sq"></span>Token tree</div>
+          <span class="hint">click a node to inspect · amber ring = high-entropy fork</span>
+        </div>
+        <div class="panel-body" style="padding:6px">
+          <svg id="tree-svg" viewBox="0 0 760 440" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+      </section>
 
-    <aside class="right">
-      <section id="dist-panel" class="panel">
-        <div class="panel-title">Distribution @ <span id="dist-node">—</span></div>
-        <div id="dist-bars"></div>
-        <div id="dist-meta"></div>
-      </section>
-      <section id="controls-panel" class="panel">
-        <div class="panel-title">Strategy</div>
-        <div id="strategy-tabs"></div>
-        <div id="sliders"></div>
-        <button id="dice">🎲 Roll the dice</button>
-      </section>
-    </aside>
+      <aside class="right">
+        <section id="dist-panel" class="panel">
+          <div class="panel-head">
+            <div class="panel-title"><span class="sq"></span>Distribution&nbsp;@&nbsp;<span class="dist-node-label" id="dist-node">root</span></div>
+            <span class="hint" id="dist-strat">greedy</span>
+          </div>
+          <div class="panel-body">
+            <div id="dist-bars"></div>
+            <div id="dist-meta" class="readout"></div>
+          </div>
+        </section>
+
+        <section id="controls-panel" class="panel">
+          <div class="panel-head"><div class="panel-title"><span class="sq"></span>Strategy</div></div>
+          <div class="panel-body">
+            <div id="strategy-tabs" class="tabs"></div>
+            <div id="sliders"></div>
+            <button id="dice" class="dice">🎲 &nbsp;Roll the dice — sample one step</button>
+            <div id="dice-out" class="dice-out"></div>
+          </div>
+        </section>
+      </aside>
+    </main>
 
     <section id="evidence-panel" class="panel" hidden>
-      <div class="panel-title">Evidence — same prompt, every strategy</div>
-      <div id="evidence-rows"></div>
+      <div class="panel-head">
+        <div class="panel-title"><span class="sq"></span>Evidence — same prompt, every strategy</div>
+        <span class="hint">deterministic paths are precomputed; samples roll live in your browser</span>
+      </div>
+      <div class="panel-body"><div id="evidence-rows"></div></div>
     </section>
-  </main>
+  </div>
 
   <script type="module" src="js/main.js"></script>
 </body>

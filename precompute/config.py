@@ -9,8 +9,8 @@ MODEL_ID = "Qwen/Qwen3-4B-MLX-4bit"
 class PrecomputeConfig:
     model_id: str = MODEL_ID
     branching_n: int = 6        # top-N children expanded per node
-    tree_depth: int = 5         # explorable tree depth D
-    top_m: int = 200            # stored distribution size per node (Decision 1)
+    tree_depth: int = 4         # explorable tree depth D
+    top_m: int = 100            # stored distribution size per node (Decision 1)
     beam_width: int = 4         # Decision 4
     horizon: int = 12           # greedy/beam deterministic path length
     top_p_max: float = 0.95     # slider cap (prevent — Decision 1)
