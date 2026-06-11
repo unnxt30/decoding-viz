@@ -1,5 +1,11 @@
 # Decoding Visualizer
 
+> **▶ Live demo — [llm-decode-viz.vercel.app](https://llm-decode-viz.vercel.app/)**
+> Explore all five strategies on six **stock prompts** right in your browser — no weights to
+> download, no ranker to run. The per-prompt data was seeded once (generated on Apple Silicon) and
+> is committed in the repo at [`site/data/`](site/data/) — `prompt0.json`–`prompt5.json` plus the
+> `index.json` manifest.
+
 An interactive, client-side visualizer that shows a **real language model's** next-token
 probability distribution and demonstrates how five decoding strategies — **greedy, beam search,
 top-k, top-p (nucleus), and temperature** — actually pick tokens from it.
